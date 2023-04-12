@@ -56,5 +56,11 @@ def find_user():
     desired_user = db.get_or_404(User, request.args.get("username"))
     user_info = [desired_user.username, desired_user.first_name, desired_user.last_name]
     return str(user_info)
-    
 
+@app.route("/delete-user", methods=["DELETE"])
+def delete_user():
+    desired_user = db.get_or_404(User, request.args.get("username"))
+    db.session.delete(desired_user)
+    db.session.commit()
+
+    return "Successfully Deleted"
