@@ -50,3 +50,11 @@ def create_account():
     db.session.commit()
 
     return user.username
+
+@app.route("/find-user", methods=["GET"])
+def find_user():
+    desired_user = db.get_or_404(User, request.args.get("username"))
+    user_info = [desired_user.username, desired_user.first_name, desired_user.last_name]
+    return str(user_info)
+    
+
