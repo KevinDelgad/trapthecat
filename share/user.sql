@@ -8,4 +8,8 @@ CREATE TABLE user(
     fname TEXT,
     lname,
     UNIQUE(username)
-)
+);
+
+CREATE INDEX idx_user ON user(username, password);
+
+COMMIT;
